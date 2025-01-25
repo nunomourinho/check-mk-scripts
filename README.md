@@ -173,7 +173,7 @@ Disponibiliza para testes em:
 http://<seu-ip>/<site>_temp/
 ```
 
-``bash
+```bash
 Os testes foram bem sucedidos? (s/n)
 Resposta s: Aplica update na instalação principal
 Resposta n: Rollback automático
