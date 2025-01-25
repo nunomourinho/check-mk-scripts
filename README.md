@@ -114,6 +114,158 @@ Consulte a documentação oficial para atualizações
 sudo omd backup <site>
 ```
 
+# Script de Atualização do Checkmk
+
+Script seguro para atualização do Checkmk em ambientes Ubuntu 24.04 com sistema de backup e rollback automático.
+
+![Workflow de Atualização](https://img.shields.io/badge/Workflow-Seguro%20Update-brightgreen)
+
+## Pré-requisitos
+
+- Checkmk instalado (versão Raw/Enterprise)
+- Ubuntu 24.04 (Noble Numbat)
+- Acesso root/sudo
+- 5 GB de espaço livre em disco
+- Conexão com internet
+
+## Uso Básico
+
+### 1. Baixar o script
+```bash
+wget https://github.com/seu-usuario/checkmk-update/raw/main/update_checkmk.sh
+2. Tornar executável
+bash
+Copy
+chmod +x update_checkmk.sh
+3. Executar atualização
+bash
+Copy
+sudo ./update_checkmk.sh
+Opções Avançadas
+Variável de Ambiente	Descrição	Exemplo
+NEW_VERSION	Define versão específica	NEW_VERSION="2.2.0p14" ./update_checkmk.sh
+UBUNTU_CODENAME	Altera codename Ubuntu	UBUNTU_CODENAME="noble" ./update_checkmk.sh
+OMD_SITE	Especifica site manualmente	OMD_SITE="meusite" ./update_checkmk.sh
+Fluxo de Atualização
+Backup Automático
+
+Cria backup compactado do site atual
+
+Armazena em /var/lib/checkmk/backups/
+
+Instalação Segura
+
+Baixa nova versão
+
+Mantém instalação principal intacta
+
+Ambiente Temporário
+
+Cria clone do site (<site>_temp)
+
+Disponibiliza para testes em:
+
+Copy
+http://<seu-ip>/<site>_temp/
+Confirmação do Usuário
+
+bash
+Copy
+Os testes foram bem sucedidos? (s/n)
+Resposta s: Aplica update na instalação principal
+
+Resposta n: Rollback automático
+
+Limpeza Final
+
+Remove ambiente temporário
+
+Mantém backups antigos por 7 dias
+
+Pós-Atualização
+Verificações Obratórias
+Acesse a interface web principal
+
+Verifique status de todos serviços:
+
+bash
+Copy
+sudo omd status -v $OMD_SITE
+Confira logs de atualização:
+
+bash
+Copy
+sudo tail -n 50 /var/log/checkmk/update.log
+Rollback Manual
+Para restaurar backup específico:
+
+bash
+Copy
+sudo omd stop $OMD_SITE
+sudo omd restore /caminho/do/backup.tar.gz
+sudo omd start $OMD_SITE
+Funcionalidades Principais
+✅ Backup automático pré-update
+
+🛡️ Ambiente de teste isolado
+
+🔄 Rollback automático em caso de falha
+
+📊 Monitoramento de recursos durante atualização
+
+🗑️ Limpeza inteligente de arquivos temporários
+
+📅 Rotação automática de backups
+
+Notas Importantes
+⚠️ Melhores Práticas
+
+Sempre teste em ambiente de homologação primeiro
+
+Verifique compatibilidade da nova versão
+
+Backups são mantidos por 7 dias (automática)
+
+Tempo de downtime estimado: 2-5 minutos
+
+🕒 Janela de Manutenção
+
+bash
+Copy
+# Agendar update (via cron)
+0 2 * * * /caminho/update_checkmk.sh > /var/log/cmk_update.log 2>&1
+Troubleshooting
+Erro Comum: Permissões
+
+bash
+Copy
+chmod +x update_checkmk.sh
+chown root:root update_checkmk.sh
+Download Falhou
+
+bash
+Copy
+# Verificar versões disponíveis
+curl -s https://download.checkmk.com/checkmk/ | grep -oP 'href="\K[^"]+'
+Rollback Falhou
+
+bash
+Copy
+# Listar backups disponíveis
+sudo ls -lh /var/lib/checkmk/backups/
+Suporte
+Documentação Oficial Checkmk
+
+Fórum da Comunidade
+
+Issues GitHub
+
+📧 Suporte Emergencial: infra@empresa.com
+
+Licença
+MIT License - Consulte o arquivo LICENSE para detalhes.
+
+
 Suporte
 Documentação Oficial Checkmk
 
