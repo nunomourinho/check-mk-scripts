@@ -39,12 +39,8 @@ sudo omd create "$OMD_SITE"
 sudo omd start "$OMD_SITE"
 
 # Gerar saída das informações de acesso
-clear
 echo "-----------------------------------------------------------"
 echo " Checkmk instalado com sucesso!"
 echo "-----------------------------------------------------------"
 echo " URL de acesso: http://$(hostname -I | awk '{print $1}')/$OMD_SITE/"
-echo " Credenciais padrão:"
-echo " Usuário: admin"
-echo " Senha: admin"
 echo "-----------------------------------------------------------"
