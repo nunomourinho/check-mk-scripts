@@ -133,19 +133,23 @@ Script seguro para atualização do Checkmk em ambientes Ubuntu 24.04 com sistem
 ### 1. Baixar o script
 ```bash
 wget https://github.com/seu-usuario/checkmk-update/raw/main/update_checkmk.sh
-2. Tornar executável
-bash
-Copy
+```
+### 2. Tornar executável
+```bash
 chmod +x update_checkmk.sh
-3. Executar atualização
-bash
-Copy
+```
+
+### 3. Executar atualização
+```bash
 sudo ./update_checkmk.sh
-Opções Avançadas
+```
+
+## Opções Avançadas
 Variável de Ambiente	Descrição	Exemplo
 NEW_VERSION	Define versão específica	NEW_VERSION="2.2.0p14" ./update_checkmk.sh
 UBUNTU_CODENAME	Altera codename Ubuntu	UBUNTU_CODENAME="noble" ./update_checkmk.sh
 OMD_SITE	Especifica site manualmente	OMD_SITE="meusite" ./update_checkmk.sh
+
 Fluxo de Atualização
 Backup Automático
 
@@ -165,16 +169,15 @@ Cria clone do site (<site>_temp)
 
 Disponibiliza para testes em:
 
-Copy
+```
 http://<seu-ip>/<site>_temp/
-Confirmação do Usuário
+```
 
-bash
-Copy
+``bash
 Os testes foram bem sucedidos? (s/n)
 Resposta s: Aplica update na instalação principal
-
 Resposta n: Rollback automático
+```
 
 Limpeza Final
 
@@ -188,22 +191,25 @@ Acesse a interface web principal
 
 Verifique status de todos serviços:
 
-bash
-Copy
+```bash
 sudo omd status -v $OMD_SITE
+```
 Confira logs de atualização:
 
 bash
-Copy
+```
 sudo tail -n 50 /var/log/checkmk/update.log
+```
+
 Rollback Manual
 Para restaurar backup específico:
 
-bash
-Copy
+```bash
 sudo omd stop $OMD_SITE
 sudo omd restore /caminho/do/backup.tar.gz
 sudo omd start $OMD_SITE
+```
+
 Funcionalidades Principais
 ✅ Backup automático pré-update
 
@@ -230,48 +236,35 @@ Tempo de downtime estimado: 2-5 minutos
 
 🕒 Janela de Manutenção
 
-bash
-Copy
+```bash
 # Agendar update (via cron)
 0 2 * * * /caminho/update_checkmk.sh > /var/log/cmk_update.log 2>&1
+```
+
 Troubleshooting
 Erro Comum: Permissões
 
-bash
-Copy
+```bash
 chmod +x update_checkmk.sh
 chown root:root update_checkmk.sh
+```
 Download Falhou
 
-bash
-Copy
+```bash
 # Verificar versões disponíveis
 curl -s https://download.checkmk.com/checkmk/ | grep -oP 'href="\K[^"]+'
+```
+
 Rollback Falhou
 
-bash
+```bash
 Copy
 # Listar backups disponíveis
 sudo ls -lh /var/lib/checkmk/backups/
-Suporte
-Documentação Oficial Checkmk
-
-Fórum da Comunidade
-
-Issues GitHub
-
-📧 Suporte Emergencial: infra@empresa.com
-
-Licença
-MIT License - Consulte o arquivo LICENSE para detalhes.
-
+```
 
 Suporte
 Documentação Oficial Checkmk
-
-Fórum da Comunidade
-
-Issues do GitHub
 
 Licença
 MIT - Consulte o ficheiro LICENSE para detalhes.
