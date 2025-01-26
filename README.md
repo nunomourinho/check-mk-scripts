@@ -143,50 +143,12 @@ chmod +x update_checkmk.sh
 sudo ./update_checkmk.sh
 ```
 
-## Opções Avançadas
-Variável de Ambiente	Descrição	Exemplo
-NEW_VERSION	Define versão específica	NEW_VERSION="2.2.0p14" ./update_checkmk.sh
-UBUNTU_CODENAME	Altera codename Ubuntu	UBUNTU_CODENAME="noble" ./update_checkmk.sh
-OMD_SITE	Especifica site manualmente	OMD_SITE="meusite" ./update_checkmk.sh
-
-Fluxo de Atualização
-Backup Automático
-
-Cria backup compactado do site atual
-
-Armazena em /var/lib/checkmk/backups/
-
-Instalação Segura
-
-Baixa nova versão
-
-Mantém instalação principal intacta
-
-Ambiente Temporário
-
-Cria clone do site (<site>_temp)
-
-Disponibiliza para testes em:
-
-```
-http://<seu-ip>/<site>_temp/
-```
 
 ```bash
 Os testes foram bem sucedidos? (s/n)
 Resposta s: Aplica update na instalação principal
 Resposta n: Rollback automático
 ```
-
-Limpeza Final
-
-Remove ambiente temporário
-
-Mantém backups antigos por 7 dias
-
-Pós-Atualização
-Verificações Obratórias
-Acesse a interface web principal
 
 Verifique status de todos serviços:
 
@@ -223,7 +185,7 @@ Funcionalidades Principais
 📅 Rotação automática de backups
 
 
-# Scripts de Backup e Restore para Checkmk :cite[1]:cite[7]
+# Scripts de Backup e Restore para Checkmk
 
 ## 📁 `backup_checkmk.sh`
 **Função:** Cria backups completos de sites OMD com gestão automatizada.
@@ -284,64 +246,11 @@ sudo ./restore_checkmk.sh <NOME_DO_SITE>
 
 ---
 
-## ⚠️ Troubleshooting Comum
-| Problema | Solução |
-|----------|---------|
-| Permissões negadas | Executar como root: `sudo !!` :cite[1] |
-| Backup não listado | Verificar nome do site/nomenclatura :cite[5] |
-| Espaço insuficiente | Limpar backups antigos: `rm /var/lib/checkmk/backups/*_pre_restore*` |
-| Restauração falhou | Usar backup preventivo automático :cite[7] |
-| Versão incompatível | Verificar `omd version` em origem/destino :cite[2] |
-
----
-
 ## 🔗 Recursos Relacionados
 - [Documentação Oficial Checkmk - Backups](https://docs.checkmk.com/latest/en/backup.html) :cite[2]
 - [Guia de Migração entre Servidores](https://forum.checkmk.com/t/check-mk-english-restore-backup-on-another-server/13385) :cite[5]
 - [Políticas de Retenção Avançadas](https://forum.checkmk.com/t/check-mk-english-checking-if-backups-are-working/11692) :cite[10]
 
-Notas Importantes
-⚠️ Melhores Práticas
-
-Sempre teste em ambiente de homologação primeiro
-
-Verifique compatibilidade da nova versão
-
-Backups são mantidos por 7 dias (automática)
-
-Tempo de downtime estimado: 2-5 minutos
-
-🕒 Janela de Manutenção
-
-```bash
-# Agendar update (via cron)
-0 2 * * * /caminho/update_checkmk.sh > /var/log/cmk_update.log 2>&1
-```
-
-Troubleshooting
-Erro Comum: Permissões
-
-```bash
-chmod +x update_checkmk.sh
-chown root:root update_checkmk.sh
-```
-Download Falhou
-
-```bash
-# Verificar versões disponíveis
-curl -s https://download.checkmk.com/checkmk/ | grep -oP 'href="\K[^"]+'
-```
-
-Rollback Falhou
-
-```bash
-Copy
-# Listar backups disponíveis
-sudo ls -lh /var/lib/checkmk/backups/
-```
-
-Suporte
-Documentação Oficial Checkmk
 
 Licença
 MIT - Consulte o ficheiro LICENSE para detalhes.
