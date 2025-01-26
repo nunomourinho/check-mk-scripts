@@ -1,11 +1,23 @@
 #!/bin/bash
 
+# Verificar parâmetro
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <OMD_SITE>"
+    exit 1
+fi
+
 # Configurações
 VERSION="2.3.0p35"                    # Versão do Checkmk
 UBUNTU_CODENAME="noble"               # Código do release
-OMD_SITE=$(omd sites | awk 'NR==1{print $1}')  # Detectar primeiro site ativo
-BACKUP_DIR="/var/lib/checkmk/backups"  # Diretório de backups
+OMD_SITE="$1"                         # Site passado como parâmetro
+BACKUP_DIR="/var/lib/checkmk/backups" # Diretório de backups
 TIMESTAMP=$(date +%Y%m%d%H%M%S)
+
+# Verificar se o site existe
+if ! omd sites | grep -qw "$OMD_SITE"; then
+    echo "⛔️ Site $OMD_SITE não encontrado!"
+    exit 1
+fi
 
 # Função para rollback
 rollback() {
