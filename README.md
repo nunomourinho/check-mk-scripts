@@ -222,6 +222,84 @@ Funcionalidades Principais
 
 📅 Rotação automática de backups
 
+
+# Scripts de Backup e Restore para Checkmk :cite[1]:cite[7]
+
+## 📁 `backup_checkmk.sh`
+**Função:** Cria backups completos de sites OMD com gestão automatizada.
+
+### Funcionalidades:
+- ✅ Backup com timestamp no formato `YYYYMMDDHHMMSS`
+- 📂 Armazenamento em `/var/lib/checkmk/backups`
+- 🔒 Verificação de permissões root
+- 🔄 Rollback automático em falhas críticas
+- 📊 Relatório pós-backup com localização e tamanho
+- 🛡️ Validação prévia da existência do site
+
+### Uso:
+```bash
+sudo ./backup_checkmk.sh <NOME_DO_SITE>
+```
+
+### Fluxo:
+1. Cria diretório de backups se não existir
+2. Para o site OMD temporariamente
+3. Gera arquivo `.tar.gz` compactado
+4. Reinicia o site após conclusão
+
+---
+
+## 🔄 `restore_checkmk.sh`
+**Função:** Restaura sites OMD a partir de backups existentes com confirmação interativa.
+
+### Funcionalidades:
+- 📋 Listagem hierárquica de backups disponíveis
+- 🗂️ Identificação de backups preventivos vs normais
+- ⏳ Exibição de datas formatadas (ex: `2025-01-27 14:30`)
+- 🔄 Cria backup pré-restauração como fallback
+- 🚨 Sistema de rollback automático em erros
+- 📏 Exibição de tamanho dos arquivos de backup
+
+### Uso:
+```bash
+sudo ./restore_checkmk.sh <NOME_DO_SITE>
+```
+
+### Fluxo:
+1. Lista backups com detalhes de tipo/data/tamanho
+2. Cria backup preventivo do estado atual
+3. Remove site existente (se aplicável)
+4. Restaura backup selecionado
+5. Valida reinicialização do serviço
+
+---
+
+## 📌 Requisitos Comuns
+- **Sistemas compatíveis:** Ubuntu 24.04 (Noble Numbat) ou superior
+- **Pré-requisitos:**
+  - Acesso root/sudo
+  - Versão idêntica do Checkmk em origem/destino :cite[2]
+  - 5GB+ espaço livre em disco
+  - Conexão com internet para downloads
+
+---
+
+## ⚠️ Troubleshooting Comum
+| Problema | Solução |
+|----------|---------|
+| Permissões negadas | Executar como root: `sudo !!` :cite[1] |
+| Backup não listado | Verificar nome do site/nomenclatura :cite[5] |
+| Espaço insuficiente | Limpar backups antigos: `rm /var/lib/checkmk/backups/*_pre_restore*` |
+| Restauração falhou | Usar backup preventivo automático :cite[7] |
+| Versão incompatível | Verificar `omd version` em origem/destino :cite[2] |
+
+---
+
+## 🔗 Recursos Relacionados
+- [Documentação Oficial Checkmk - Backups](https://docs.checkmk.com/latest/en/backup.html) :cite[2]
+- [Guia de Migração entre Servidores](https://forum.checkmk.com/t/check-mk-english-restore-backup-on-another-server/13385) :cite[5]
+- [Políticas de Retenção Avançadas](https://forum.checkmk.com/t/check-mk-english-checking-if-backups-are-working/11692) :cite[10]
+
 Notas Importantes
 ⚠️ Melhores Práticas
 
