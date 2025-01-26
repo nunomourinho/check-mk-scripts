@@ -3,7 +3,7 @@
 # Configurações
 VERSION="2.2.0p38"                    # Versão do Checkmk
 UBUNTU_CODENAME="noble"               # Código do release
-OMD_SITE="${OMD_SITE:-mysite}"        # Nome do site OMD (pode ser alterado via variável de ambiente)
+OMD_SITE="${OMD_SITE:-newsite}"        # Nome do site OMD (pode ser alterado via variável de ambiente)
 PACKAGE_NAME="check-mk-raw-${VERSION}_0.${UBUNTU_CODENAME}_amd64.deb"
 DOWNLOAD_URL="https://download.checkmk.com/checkmk/${VERSION}/${PACKAGE_NAME}"
 
