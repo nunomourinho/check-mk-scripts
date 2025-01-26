@@ -47,7 +47,7 @@ sudo dpkg -i /tmp/checkmk_new.deb || {
 }
 
 # 4. Validar instalação
-INSTALLED_VERSION=$(dpkg -s check-mk-raw | grep Version | awk '{print $2}')
+INSTALLED_VERSION=$(dpkg -l | grep '^ii  check-mk-raw' | awk '{print $2}' | sed 's/check-mk-raw-//')
 if [ "$INSTALLED_VERSION" != "${VERSION}" ]; then
     echo "⛔️ Versão instalada ($INSTALLED_VERSION) não corresponde à esperada ($VERSION)"
     rollback
