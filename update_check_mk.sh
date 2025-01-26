@@ -26,8 +26,10 @@ rollback() {
     echo -e "\n⛔️ Rollback necessário. Revertendo alterações..."
     sudo omd stop "$OMD_SITE" 2>/dev/null || true
     sudo omd rm "${OMD_SITE}_temp" || true
+    sudo omd mv "${OMD_SITE}" "${OMD_SITE}_delete"|| true
     sudo dpkg --purge check-mk-raw 2>/dev/null || true
     sudo omd restore "$BACKUP_DIR/${OMD_SITE}_${TIMESTAMP}.tar.gz"
+    sudo omd rm "${OMD_SITE}_delete"
     echo "✅ Rollback completo. Sistema restaurado para o estado anterior."
     exit 1
 }
