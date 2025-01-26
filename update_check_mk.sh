@@ -4,7 +4,7 @@ set -e
 # Configurações
 VERSION="2.3.0p25"                    # Versão do Checkmk
 UBUNTU_CODENAME="noble"               # Código do release
-OMD_SITE=$(omd sites | awk 'NR==2{print $1}')  # Detectar site automaticamente
+OMD_SITE=$(omd sites | awk '{print $1}')  # Detectar site automaticamente
 BACKUP_DIR="/var/lib/checkmk/backups"  # Diretório de backups
 TIMESTAMP=$(date +%Y%m%d%H%M%S)
 
