@@ -2,7 +2,8 @@
 
 # Verificar parâmetro
 if [ $# -eq 0 ]; then
-    echo "Usage: $0 <OMD_SITE>"
+    echo "Usage: $0 <OMD_SITE>. Escolha um dos sites:"
+    omd sites
     exit 1
 fi
 
