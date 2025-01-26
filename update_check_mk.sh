@@ -53,7 +53,7 @@ echo "🔵 Baixando Checkmk ${VERSION}..."
 wget "https://download.checkmk.com/checkmk/${VERSION}/check-mk-raw-${VERSION}_0.${UBUNTU_CODENAME}_amd64.deb" -O /tmp/checkmk_new.deb
 
 echo "🔵 Instalando nova versão..."
-sudo apt install -y /tmp/checkmk_new.deb || {
+sudo dpkg -i /tmp/checkmk_new.deb || {
     echo "⚠️ Erro na instalação do pacote. Tentando corrigir dependências..."
     sudo apt-get install -f -y
 }
