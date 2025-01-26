@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configurações
-VERSION="2.2.0p38"                    # Versão do Checkmk
+VERSION="2.3.0p35"                    # Versão do Checkmk
 UBUNTU_CODENAME="noble"               # Código do release
 OMD_SITE=$(omd sites | awk 'NR==1{print $1}')  # Detectar primeiro site ativo
 BACKUP_DIR="/var/lib/checkmk/backups"  # Diretório de backups
