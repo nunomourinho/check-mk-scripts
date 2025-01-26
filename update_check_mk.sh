@@ -34,7 +34,6 @@ sudo mkdir -p "$BACKUP_DIR"
 echo "🔵 Criando backup do site $OMD_SITE..."
 sudo omd stop "$OMD_SITE"
 sudo omd backup "$OMD_SITE" "$BACKUP_DIR/${OMD_SITE}_${TIMESTAMP}.tar.gz"
-sudo omd start "$OMD_SITE"
 
 # 3. Instalar nova versão
 echo "🔵 Baixando Checkmk ${VERSION}..."
@@ -63,7 +62,7 @@ sudo omd start "${OMD_SITE}_temp"
 IP=$(hostname -I | awk '{print $1}')
 echo -e "\n🔵 Ambiente temporário pronto para testes:"
 echo -e "🌐 URL: http://${IP}/${OMD_SITE}_temp/"
-echo -e "🔑 Credenciais: admin / admin"
+echo -e "🔑 Credenciais: As actuais"
 echo -e "\n⚠️ Teste o sistema antes de continuar!"
 
 # 7. Confirmação do usuário
