@@ -93,7 +93,7 @@ sudo omd update --conflict=install "$OMD_SITE"
 sudo omd start "$OMD_SITE"
 
 # 9. Limpeza
-sudo omd rm -f "${OMD_SITE}_temp"
+sudo omd rm "${OMD_SITE}_temp"
 rm /tmp/checkmk_new.deb
 
 echo -e "\n✅ Atualização concluída com sucesso!"
