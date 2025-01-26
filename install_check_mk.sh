@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configurações
-VERSION="2.3.0p25"                    # Versão do Checkmk
+VERSION="2.2.0p38"                    # Versão do Checkmk
 UBUNTU_CODENAME="noble"               # Código do release
 OMD_SITE="${OMD_SITE:-mysite}"        # Nome do site OMD (pode ser alterado via variável de ambiente)
 PACKAGE_NAME="check-mk-raw-${VERSION}_0.${UBUNTU_CODENAME}_amd64.deb"
