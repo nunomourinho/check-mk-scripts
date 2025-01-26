@@ -54,6 +54,7 @@ fi
 
 # 5. Ambiente temporário para testes
 echo "🔵 Configurando ambiente temporário..."
+sudo omd stop "$OMD_SITE"
 sudo omd cp "$OMD_SITE" "${OMD_SITE}_temp"
 sudo omd update --conflict=install "${OMD_SITE}_temp"
 sudo omd start "${OMD_SITE}_temp"
