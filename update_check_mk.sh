@@ -15,7 +15,8 @@ TIMESTAMP=$(date +%Y%m%d%H%M%S)
 
 # Verificar se o site existe
 if ! omd sites | grep -qw "$OMD_SITE"; then
-    echo "⛔️ Site $OMD_SITE não encontrado!"
+    echo "⛔️ Site $OMD_SITE não encontrado! Os sites existentes são:"
+    omd sites
     exit 1
 fi
 
