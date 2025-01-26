@@ -236,20 +236,11 @@ sudo ./restore_checkmk.sh <NOME_DO_SITE>
 
 ---
 
-## 📌 Requisitos Comuns
-- **Sistemas compatíveis:** Ubuntu 24.04 (Noble Numbat) ou superior
-- **Pré-requisitos:**
-  - Acesso root/sudo
-  - Versão idêntica do Checkmk em origem/destino :cite[2]
-  - 5GB+ espaço livre em disco
-  - Conexão com internet para downloads
-
----
 
 ## 🔗 Recursos Relacionados
-- [Documentação Oficial Checkmk - Backups](https://docs.checkmk.com/latest/en/backup.html) :cite[2]
-- [Guia de Migração entre Servidores](https://forum.checkmk.com/t/check-mk-english-restore-backup-on-another-server/13385) :cite[5]
-- [Políticas de Retenção Avançadas](https://forum.checkmk.com/t/check-mk-english-checking-if-backups-are-working/11692) :cite[10]
+- [Documentação Oficial Checkmk - Backups](https://docs.checkmk.com/latest/en/backup.html) 
+- [Guia de Migração entre Servidores](https://forum.checkmk.com/t/check-mk-english-restore-backup-on-another-server/13385) 
+- [Políticas de Retenção Avançadas](https://forum.checkmk.com/t/check-mk-english-checking-if-backups-are-working/11692)
 
 
 Licença
