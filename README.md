@@ -2,7 +2,6 @@
 
 Script para instalação automatizada do Checkmk Raw Edition (CRE) em Ubuntu 24.04 (Noble Numbat).
 
-![Checkmk Logo](https://checkmk.com/static/images/checkmk-logo.svg)
 
 ## Pré-requisitos
 
