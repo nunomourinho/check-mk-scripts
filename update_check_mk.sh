@@ -30,6 +30,7 @@ rollback() {
     sudo dpkg --purge check-mk-raw 2>/dev/null || true
     sudo omd restore "$BACKUP_DIR/${OMD_SITE}_${TIMESTAMP}.tar.gz"
     sudo omd rm "${OMD_SITE}_delete"
+    sudo omd start "${OMD_SITE}"
     echo "✅ Rollback completo. Sistema restaurado para o estado anterior."
     exit 1
 }
