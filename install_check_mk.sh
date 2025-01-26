@@ -18,7 +18,7 @@ sudo apt-get install -y wget apache2
 wget $DOWNLOAD_URL -O /tmp/checkmk.deb
 
 # Instalar o pacote
-sudo apt install /tmp/checkmk.deb
+sudo dpkg -i /tmp/checkmk.deb
 
 # Resolver dependências faltantes
 sudo apt-get install -f -y
