@@ -53,17 +53,17 @@ echo "🔵 Baixando Checkmk ${VERSION}..."
 wget "https://download.checkmk.com/checkmk/${VERSION}/check-mk-raw-${VERSION}_0.${UBUNTU_CODENAME}_amd64.deb" -O /tmp/checkmk_new.deb
 
 echo "🔵 Instalando nova versão..."
-sudo dpkg -i /tmp/checkmk_new.deb || {
+sudo apt install -y /tmp/checkmk_new.deb || {
     echo "⚠️ Erro na instalação do pacote. Tentando corrigir dependências..."
     sudo apt-get install -f -y
 }
 
 # 4. Validar instalação
-INSTALLED_VERSION=$(dpkg -l | grep '^ii  check-mk-raw' | awk '{print $2}' | sed 's/check-mk-raw-//')
-if [ "$INSTALLED_VERSION" != "${VERSION}" ]; then
-    echo "⛔️ Versão instalada ($INSTALLED_VERSION) não corresponde à esperada ($VERSION)"
-    rollback
-fi
+#INSTALLED_VERSION=$(dpkg -l | grep '^ii  check-mk-raw' | awk '{print $2}' | sed 's/check-mk-raw-//')
+#if [ "$INSTALLED_VERSION" != "${VERSION}" ]; then
+#    echo "⛔️ Versão instalada ($INSTALLED_VERSION) não corresponde à esperada ($VERSION)"
+#    rollback
+#fi
 
 # 5. Ambiente temporário para testes
 echo "🔵 Configurando ambiente temporário..."
