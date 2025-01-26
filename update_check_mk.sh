@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # Configurações
 VERSION="2.3.0p25"                    # Versão do Checkmk
