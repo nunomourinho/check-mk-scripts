@@ -37,7 +37,6 @@ sudo omd start "$OMD_SITE"
 # 2. Instalar nova versão
 echo "🔵 Instalando Checkmk $NEW_VERSION..."
 wget "https://download.checkmk.com/checkmk/${NEW_VERSION}/check-mk-raw-${NEW_VERSION}_0.${UBUNTU_CODENAME}_amd64.deb" -O /tmp/checkmk_new.deb
-sudo dpkg -i /tmp/checkmk_new.deb
 sudo apt-get install -f -y
 
 # 3. Criar ambiente temporário para testes
